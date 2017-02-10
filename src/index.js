@@ -12,6 +12,9 @@ import Home from './containers/home'
 
 
 require('./styles.scss');
+_500px.init({
+  sdk_key: '3450468445072c16a703aacb86bcae3fbf01fa38'
+});
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
