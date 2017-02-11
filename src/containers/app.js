@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import {Link,IndexLink} from 'react-router'
-
 
 class App extends Component{
   constructor(props){
@@ -26,10 +24,10 @@ class App extends Component{
     });
   }
 
+  //This function will update the photo list with a new set of photos.
+  //Get the new photos create a new list with the contantenation of new and old.
+  //Increment current page by 1
   updatePhotos(){
-    //This function will update the photo list with a new set of photos.
-    //Get the new photos create a new list with the contantenation of new and old.
-    //Increment current page by 1
     var self = this;
     var newPage = self.state.page+1;
 

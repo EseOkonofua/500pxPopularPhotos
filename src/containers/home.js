@@ -10,10 +10,6 @@ export default class Home extends Component {
   handleGalleryScroll(){
     var gSelector = document.getElementById("gallery-selector");
 
-    // console.log('**Scroll top',gSelector.scrollTop);
-    // console.log('**Selector height',gSelector.scrollHeight - window.innerHeight);
-    // console.log(this.props.loadingImages);
-
     //Make sure one image is not being loaded, and check if scroll has reached the bottom for infinite scrolling.
     if(!this.props.loadingImages && gSelector.scrollTop + 50 >= gSelector.scrollHeight - window.innerHeight){
       console.log("LOADED!")
@@ -30,11 +26,19 @@ export default class Home extends Component {
       )
     });
 
+    var selectedImage = this.props.photos[this.props.selectedImage];
+
     return(
       <div id='container'>
         <div id='gallery'>
           <img id="logo" src='images/logomark.png'/>
-          <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? this.props.photos[this.props.selectedImage].image_url : ''}')`}}></div>
+          <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? selectedImage.image_url : ''}')`}}></div>
+          <div id="info">
+            <img src={selectedImage ? selectedImage.user.userpic_url : ''}/>
+            <span>{selectedImage ? selectedImage.user.fullname : ''}</span>
+            <span>{selectedImage ? '-' : ''}</span>
+            <span className='title'>{selectedImage ? selectedImage.name : ''}</span>
+          </div>
         </div>
         <div onScroll={this.handleGalleryScroll} id='gallery-selector' >
           {displayImages}

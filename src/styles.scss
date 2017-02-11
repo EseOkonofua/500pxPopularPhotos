@@ -1,5 +1,6 @@
 body,html {
   margin:0;
+  font-family: "Helvetica Neue", HelveticaNeue, Helvetica, TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arial, sans-serif;
 }
 
 a{
@@ -32,9 +33,6 @@ a:active, a:visited {
 
 #gallery{
   flex:2;
-  display: flex;
-  justify-content: center;
-  align-items:center;
   position: relative;
 }
 
@@ -52,6 +50,7 @@ a:active, a:visited {
   -webkit-filter: drop-shadow( 5px 5px 5px rgba(0,0,0,0.7) );
    filter: drop-shadow( 5px 5px 5px rgba(0,0,0,0.7) );
 }
+
 #logo{
   opacity: 0.3;
   position: absolute;
@@ -71,6 +70,32 @@ a:active, a:visited {
   overflow-y: auto;
   padding-bottom:20px;
   position: relative;
+}
+
+#info{
+  background-color: rgba(0,0,0,0.9);
+  color:white;
+  padding:5px;
+  height:40px;
+  position: absolute;
+  bottom:10px;
+  left:10px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .title{
+    font-style: italic;
+  }
+
+  *{
+    margin-right: 10px;
+  }
+
+  img{
+    height:30px;
+    border-radius: 50%;
+  }
 }
 
 @keyframes fadeIn {
