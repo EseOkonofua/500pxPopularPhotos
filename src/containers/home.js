@@ -24,6 +24,7 @@ export default class Home extends Component {
   render(){
     var self = this;
     var displayImages = this.props.photos.map(function(item,index){
+
       return (
         <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images' src={item.image_url} key={index} />
       )
@@ -32,14 +33,10 @@ export default class Home extends Component {
     return(
       <div id='container'>
         <div id='gallery'>
-          <img id='selection' src={ this.props.photos.length > 1 ? this.props.photos[this.props.selectedImage].image_url : '' } />
+          <img id="logo" src='images/logomark.png'/>
+          <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? this.props.photos[this.props.selectedImage].image_url : ''}')`}}></div>
         </div>
         <div onScroll={this.handleGalleryScroll} id='gallery-selector' >
-          <header>
-            <div id="header">
-              <img src='images/logomark.png'/>
-            </div>
-          </header>
           {displayImages}
         </div>
       </div>

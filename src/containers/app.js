@@ -39,7 +39,7 @@ class App extends Component{
     });
     _500px.api('/photos', {feature: 'popular', page: newPage,image_size:1600}, function (response) {
       if (response.success) {
-          //console.log(response.data);
+          console.log(response.data);
           self.setState({
             photos: [...self.state.photos,...response.data.photos],
             page: newPage,
