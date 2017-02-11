@@ -1,40 +1,47 @@
 import React, { Component } from 'react'
 
 export default class Home extends Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
 
-    this.state = {
-      photos: [],
-      page: 1
+    this.handleGalleryScroll = this.handleGalleryScroll.bind(this);
+  }
+
+  handleGalleryScroll(){
+    var gSelector = document.getElementById("gallery-selector");
+
+    // console.log('**Scroll top',gSelector.scrollTop);
+    // console.log('**Selector height',gSelector.scrollHeight - window.innerHeight);
+    // console.log(this.props.loadingImages);
+
+    //Make sure one image is not being loaded, and check if scroll has reached the bottom for infinite scrolling.
+    if(!this.props.loadingImages && gSelector.scrollTop + 50 >= gSelector.scrollHeight - window.innerHeight){
+      console.log("LOADED!")
+      this.props.updatePhotos();
     }
   }
 
-  componentDidMount(){
-    var self = this;
-    _500px.api('/photos', {feature: 'popular', page: 3,image_size:600}, function (response) {
-      if (response.success) {
-          console.log(response.data);
-          self.setState({
-            photos: response.data.photos
-          });
-      } else {
-          alert('Unable to complete request: ' + response.status + ' - ' + response.error_message);
-      }
-    });
-  }
-
   render(){
-    var displayPhotos = this.state.photos.map(function(item, index){
-      return(
-        <img key={index} width='150' src={item.image_url} />
+    var self = this;
+    var displayImages = this.props.photos.map(function(item,index){
+      return (
+        <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images' src={item.image_url} key={index} />
       )
     });
 
     return(
-      <div>
-        <h3>Ese's React-Redux starter kit w/ React router</h3>
-        {displayPhotos}
+      <div id='container'>
+        <div id='gallery'>
+          <img id='selection' src={ this.props.photos.length > 1 ? this.props.photos[this.props.selectedImage].image_url : '' } />
+        </div>
+        <div onScroll={this.handleGalleryScroll} id='gallery-selector' >
+          <header>
+            <div id="header">
+              <img src='images/logomark.png'/>
+            </div>
+          </header>
+          {displayImages}
+        </div>
       </div>
     )
   }
