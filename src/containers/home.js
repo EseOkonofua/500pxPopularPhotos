@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ImageWithLoad from '../components/ImageWithLoad'
+
 
 export default class Home extends Component {
   constructor(){
@@ -22,13 +24,8 @@ export default class Home extends Component {
 
     //Map the list of photo functions to a list of galler image components. Containing the info buttons and the images them selves.
     var displayImages = this.props.photos.map(function(item,index){
-
       return (
-        <div key={index} className='gallery-image'>
-          <i onMouseOver={self.props.toggleShowInfo} onMouseLeave={self.props.toggleShowInfo} className='fa fa-info-circle fa-lg'></i>
-          <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images small' src={item.images[0].url}  />
-          <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images large' src={item.images[1].url}  />
-        </div>
+        <ImageWithLoad key={index} index={index} toggleShowInfo = {self.props.toggleShowInfo} updateViewingImage={self.props.updateViewingImage} item={item} />
       )
     });
 
