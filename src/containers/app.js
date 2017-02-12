@@ -10,11 +10,13 @@ class App extends Component{
       photos:[],
       page: 1,
       selectedImage: 1,
-      loadingImages: false
+      loadingImages: false,
+      showInfo: false
     }
 
     this.updatePhotos = this.updatePhotos.bind(this);
     this.updateViewingImage = this.updateViewingImage.bind(this);
+    this.toggleShowInfo = this.toggleShowInfo.bind(this);
   }
 
   //Update viewing image will update which image is being focused in the gallery;
@@ -24,18 +26,25 @@ class App extends Component{
     });
   }
 
+  //
+  toggleShowInfo(){
+    this.setState({
+      showInfo: !this.state.showInfo
+    })
+  }
+
   //This function will update the photo list with a new set of photos.
   //Get the new photos create a new list with the contantenation of new and old.
   //Increment current page by 1
-  updatePhotos(){
+  updatePhotos(index=null){
     var self = this;
-    var newPage = self.state.page+1;
+    var newPage = index ? index : self.state.page+1;
 
     //Set loading images flag to be true;
     self.setState({
       loadingImages: true
     });
-    _500px.api('/photos', {feature: 'popular', page: newPage,image_size:1600}, function (response) {
+    _500px.api('/photos', {feature: 'popular', page: newPage,image_size:'1600,600'}, function (response) {
       if (response.success) {
           console.log(response.data);
           self.setState({
@@ -54,7 +63,7 @@ class App extends Component{
 
   componentWillMount(){
     //knowing the component will mount query the api for photos.
-    this.updatePhotos();
+    this.updatePhotos(1);
 
   }
 
@@ -66,6 +75,7 @@ class App extends Component{
           React.cloneElement(this.props.children,{
             updateViewingImage:this.updateViewingImage,
             updatePhotos:this.updatePhotos,
+            toggleShowInfo: this.toggleShowInfo,
             ...this.state
           })
         }

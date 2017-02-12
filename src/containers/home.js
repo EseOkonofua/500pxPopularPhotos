@@ -22,7 +22,11 @@ export default class Home extends Component {
     var displayImages = this.props.photos.map(function(item,index){
 
       return (
-        <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images' src={item.image_url} key={index} />
+        <div key={index} className='gallery-image'>
+          <i onMouseOver={self.props.toggleShowInfo} onMouseLeave={self.props.toggleShowInfo} className='fa fa-info-circle fa-lg'></i>
+          <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images small' src={item.images[0].url}  />
+          <img onMouseOver={self.props.updateViewingImage.bind(null, index)} className='images large' src={item.images[1].url}  />
+        </div>
       )
     });
 
@@ -30,16 +34,18 @@ export default class Home extends Component {
 
     return(
       <div id='container'>
+        <a target='_blank' href='https://500px.com'><img id="logo" src={this.props.loadingImages ? 'images/loading.gif' : 'images/logomark.png'}/></a>
         <div id='gallery'>
-          <img id="logo" src='images/logomark.png'/>
           <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? selectedImage.image_url : ''}')`}}></div>
-          <div id="info">
-            <img src={selectedImage ? selectedImage.user.userpic_url : ''}/>
-            <span>{selectedImage ? selectedImage.user.fullname : ''}</span>
-            <span>{selectedImage ? '-' : ''}</span>
-            <span className='title'>{selectedImage ? selectedImage.name : ''}</span>
-          </div>
         </div>
+
+        <div className={ this.props.showInfo ? '' : 'hide'} id="info">
+          <img src={selectedImage ? selectedImage.user.userpic_url : ''}/>
+          <span>{selectedImage ? selectedImage.user.fullname : ''}</span>
+          <span>{selectedImage ? '-' : ''}</span>
+          <span className='title'>{selectedImage ? selectedImage.name : ''}</span>
+        </div>
+
         <div onScroll={this.handleGalleryScroll} id='gallery-selector' >
           {displayImages}
         </div>
