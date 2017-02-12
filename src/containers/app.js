@@ -5,13 +5,14 @@ class App extends Component{
     super(props);
     //Not going to be using redux action-reducer flow
     //Will use App container to manage application state. Images and Pagination.
-    //State will be passed down to child components.
+    //State and controller functions will be passed down to child components.
     this.state = {
       photos:[],
       page: 1,
       selectedImage: 1,
       loadingImages: false,
-      showInfo: false
+      showInfo: false,
+      maxpage: 1000
     }
 
     this.updatePhotos = this.updatePhotos.bind(this);
@@ -26,7 +27,7 @@ class App extends Component{
     });
   }
 
-  //
+  //Toggle for when information is hovered over
   toggleShowInfo(){
     this.setState({
       showInfo: !this.state.showInfo
@@ -44,13 +45,16 @@ class App extends Component{
     self.setState({
       loadingImages: true
     });
+
+    //Making the 500px api query, size 1600 for large displays and 600 for grid view selector.
     _500px.api('/photos', {feature: 'popular', page: newPage,image_size:'1600,600'}, function (response) {
       if (response.success) {
           console.log(response.data);
           self.setState({
             photos: [...self.state.photos,...response.data.photos],
             page: newPage,
-            loadingImages:false
+            loadingImages:false,
+            maxpage: response.data.total_pages
           });
       } else {
           alert('Unable to access 500px API: ' + response.status + ' - ' + response.error_message);
@@ -71,7 +75,7 @@ class App extends Component{
     return (
       <div>
         {
-          //Use the React.cloneElemt in order to pass props to children
+          //Use the React.cloneElemt in order to pass down the state and controller functions to children
           React.cloneElement(this.props.children,{
             updateViewingImage:this.updateViewingImage,
             updatePhotos:this.updatePhotos,
