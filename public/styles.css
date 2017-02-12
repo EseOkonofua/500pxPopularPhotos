@@ -108,6 +108,12 @@ a:active, a:visited {
     height: 30px;
     border-radius: 50%; }
 
+.loading {
+  width: 200px;
+  height: 200px;
+  display: inline-block;
+  background-color: black; }
+
 @media (max-width: 1024px) {
   #gallery {
     display: none; }
