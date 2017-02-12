@@ -7,7 +7,7 @@ The tech stack includes the:
 - React.js
 - React router (Although there's no additional routes).
 
-#src
+#src/
 ##index.js
 Contains the initialization code for the application. Initiates with the 500px sdk_key and renders the app.
 
