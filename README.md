@@ -12,7 +12,7 @@ The tech stack includes the:
 Contains the initialization code for the application. Initiates with the 500px sdk_key and renders the app.
 
 ##styles.scss
-Contains the styles for the web app.
+Contains the styles for the web app. This application was made to be responsive, so try it on different devices!
 
 ##containers/app.js
 This container acts as the application controller. It handles the overall state of the application and has many of the application controller functions, such as loading photos from the 500px API, updating the current gallery focus, the toggle for viewing photo information.
