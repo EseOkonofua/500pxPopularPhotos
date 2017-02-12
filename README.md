@@ -23,7 +23,7 @@ This container acts as the structural portion of the application. It houses the 
 ##components/ImageWithLoad.js
 This component acts as a loading screen for the images. It's purpose is to replace the image with a loading indicator until the image has fully loaded.
 
-To run this app:
+###To run this app:
 - Fork this repository or download it.
 - Replace the sdk_key from 500px.com in src/index.js with your own.
 - run:
