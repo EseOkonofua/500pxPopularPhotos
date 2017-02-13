@@ -24,7 +24,7 @@ export default class ImageWithLoad extends Component {
   //Handle Image loaded will give a progress of how both images have loaded.
   handleImageLoaded(){
     var self = this;
-    console.log("Loaded 1 image")
+    //console.log("Loaded 1 image")
     this.setState({
       loadedImages: self.state.loadedImages+1
     })

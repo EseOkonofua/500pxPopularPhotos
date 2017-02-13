@@ -49,7 +49,7 @@ class App extends Component{
     //Making the 500px api query, size 1600 for large displays and 600 for grid view selector.
     _500px.api('/photos', {feature: 'popular', page: newPage,image_size:'1600,600'}, function (response) {
       if (response.success) {
-          console.log(response.data);
+          //console.log(response.data);
           self.setState({
             photos: [...self.state.photos,...response.data.photos],
             page: newPage,
