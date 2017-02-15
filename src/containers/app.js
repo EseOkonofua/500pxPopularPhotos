@@ -28,18 +28,20 @@ class App extends Component{
   }
 
   //Toggle for when information is hovered over
-  toggleShowInfo(){
+  //add index parameter to fix bug where user happens to hover info without touching picture
+  toggleShowInfo(index){
     this.setState({
-      showInfo: !this.state.showInfo
-    })
+      showInfo: !this.state.showInfo,
+      selectedImage: index
+    });
   }
 
   //This function will update the photo list with a new set of photos.
   //Get the new photos create a new list with the contantenation of new and old.
   //Increment current page by 1
-  updatePhotos(index=null){
+  updatePhotos(page=null){
     var self = this;
-    var newPage = index ? index : self.state.page+1;
+    var newPage = page ? page : self.state.page+1;
 
     //Set loading images flag to be true;
     self.setState({
@@ -53,15 +55,16 @@ class App extends Component{
           self.setState({
             photos: [...self.state.photos,...response.data.photos],
             page: newPage,
-            loadingImages:false,
             maxpage: response.data.total_pages
           });
       } else {
           alert('Unable to access 500px API: ' + response.status + ' - ' + response.error_message);
-          self.setState({
-            loadingImages:false
-          });
       }
+
+      //after response not loading images
+      self.setState({
+        loadingImages: false
+      })
     });
   }
 

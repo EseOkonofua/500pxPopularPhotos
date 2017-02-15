@@ -35,7 +35,9 @@ export default class Home extends Component {
     return(
       <div id='container'>
         <a target='_blank' href='https://500px.com'><img id="logo" src={this.props.loadingImages ? 'images/loading.gif' : 'images/logomark.png'}/></a>
-        <div id='gallery'> {/*The gallery component will be the large view for focused on images. */}
+
+        {/*The gallery component will be the large view for focused on images. */}
+        <div id='gallery'>
           <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? selectedImage.image_url : ''}')`}}></div>
         </div>
 

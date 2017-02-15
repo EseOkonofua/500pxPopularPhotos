@@ -42,7 +42,7 @@ export default class ImageWithLoad extends Component {
     //If still loading render the loading indicator, else render the actual images
     var component = !self.state.loading ?
       <span>
-        <i onMouseOver={self.props.toggleShowInfo} onMouseLeave={self.props.toggleShowInfo} className='fa fa-info-circle fa-lg'></i>
+        <i onMouseOver={self.props.toggleShowInfo.bind(null, self.props.index)} onMouseLeave={self.props.toggleShowInfo.bind(null, self.props.index)} className='fa fa-info-circle fa-lg'></i>
         <img onMouseOver={self.props.updateViewingImage.bind(null, self.props.index)} className='images small' src={self.props.item.images[0].url}  />
         <img  onMouseOver={self.props.updateViewingImage.bind(null, self.props.index)} className='images large' src={self.props.item.images[1].url}  />
       </span>
