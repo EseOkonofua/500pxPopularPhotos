@@ -33,3 +33,4 @@ npm install
 npm start
 ```
 To view the application in action visit: http://500px-pop.surge.sh
+*by Ese Okonofua*
