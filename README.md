@@ -32,5 +32,5 @@ This component acts as a loading screen for the images. It's purpose is to repla
 npm install
 npm start
 ```
-To view the application in action visit: http://500px-pop.surge.sh
+To view the application in action visit: http://500px.eokonofua.com
 *by Ese Okonofua*
