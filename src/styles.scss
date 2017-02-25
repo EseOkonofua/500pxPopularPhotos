@@ -132,10 +132,10 @@ a:active, a:visited {
 }
 
 .loading{
-  width: 200px;
-  height: 200px;
   display: inline-block;
   background-color:rgb(0,0,0);
+  width: calc(100% - 20px);
+  height: 300px;
 }
 
 
@@ -144,9 +144,21 @@ a:active, a:visited {
       display: none;
     }
 
+    #gallery-selector{
+      overflow-y: scroll; /* has to be scroll, not auto */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .loading{
+      width:80vw;
+    }
+
     .gallery-image {
       display: table;
       width: auto;
+      max-width: calc(100% - 20px);
+      max-height: calc(100vh - 20px);
+
 
       .images{
         max-height:calc(100vh - 20px);
@@ -166,16 +178,6 @@ a:active, a:visited {
 
     .images.large{
       display: inline;
-    }
-
-    #gallery-selector{
-
-      .gallery-image{
-        width: auto;
-        max-width: calc(100% - 20px);
-        max-height: calc(100vh - 20px);
-
-      }
     }
 
 

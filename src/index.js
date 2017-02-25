@@ -8,7 +8,7 @@ import Home from './containers/home'
 
 require('./styles.scss');
 _500px.init({
-  sdk_key: 'your sdk here'
+  sdk_key: 'your sdk key here'
 });
 
 
