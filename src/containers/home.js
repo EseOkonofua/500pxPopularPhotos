@@ -38,7 +38,7 @@ export default class Home extends Component {
 
         {/*The gallery component will be the large view for focused on images. */}
         <div id='gallery'>
-          <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? selectedImage.image_url : ''}')`}}></div>
+          <div id="selection" style={{backgroundImage:`url('${this.props.photos.length > 1 ? selectedImage.images[1].url : ''}')`}}></div>
         </div>
 
         {/* The info component will be the view for the photo attribution, showing photographer name and image title. */}
